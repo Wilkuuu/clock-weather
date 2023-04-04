@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 from datetime import datetime
 import requests
-import time
 
 app = Flask(__name__)
 
@@ -13,7 +12,6 @@ def index():
 
 @app.route("/time")
 def get_time():
-    #     now = datetime.now().strftime("%H:%M:%S")
     now = [datetime.now().strftime("%H:%M"), datetime.now().weekday(), datetime.now().strftime("%d.%m.%Y")]
     return now
 

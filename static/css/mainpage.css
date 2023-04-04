@@ -7,4 +7,5 @@ body{
     align-content: center;
     justify-content: center;
     display: flex;
+    max-height: 600px;
 }

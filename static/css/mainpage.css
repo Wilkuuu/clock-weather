@@ -1,5 +1,8 @@
 body{
+    max-height: 600px;
     background: black;
+    font-family: 'Manrope';
+
 }
 #time{
  color: white;
@@ -7,5 +10,19 @@ body{
     align-content: center;
     justify-content: center;
     display: flex;
-    max-height: 600px;
+}
+#day{
+ color: white;
+    font-size: 190px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+}
+
+#weather{
+ color: white;
+    font-size: 100px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
 }

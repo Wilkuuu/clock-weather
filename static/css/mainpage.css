@@ -1,32 +1,29 @@
-@charset "utf-8";
-/* CSS Document */
-/* @author: The Absolute Tinkerer */
-/* @date: 21 May 2021 */
+body{
+    max-height: 600px;
+    background: black;
+    font-family: 'Manrope';
 
-html {
-    padding: 0px;
-    border: 0px;
-    margin: 0px;
-    width: 100%;
-    height: 100%;
+}
+#time{
+ color: white;
+    font-size: 100px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    max-height: 30px;
+}
+#day{
+ color: white;
+    font-size: 100px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
 }
 
-body {
-    padding: 0px;
-    border: 0px;
-    margin: 0px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: #000000;
-}
-
-canvas {
-    padding: 0px;
-    border: 0px;
-    margin: 0px;
-    width: calc(100% - 2px);
-    height: calc(100% - 2px);
-    border: 1px solid #ffffff;
-    background-color: #050505;
+#weather{
+ color: white;
+    font-size: 100px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
 }

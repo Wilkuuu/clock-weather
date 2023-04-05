@@ -7,6 +7,7 @@ function getWeather() {
         // document.getElementById('weatherIcon').classList.add(addClass(data))
 
         $("#weather").text(`${data.currentConditions.temp}°C`);
+        $("#humidity").text(`${data.currentConditions.humidity}%`);
         document.getElementById('weatherIcon').classList.value = '';
         document.getElementById('weatherIcon').classList.add(addClass(data))
     });

@@ -13,19 +13,35 @@ body {
     justify-content: center;
     display: flex;
     max-height: 30px;
+    position: relative;
+    left: -15px;
+    top: -80px;
 }
 
 #day {
     color: white;
-    font-size: 70px;
+    font-size: 60px;
     align-content: center;
     justify-content: center;
     display: flex;
+    position: relative;
+    left: 0px;
+    top: -87px;
 }
 
 #weather {
     color: white;
     font-size: 100px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+
+}
+
+#humidity {
+    color: white;
+    font-size: 50px;
     align-content: center;
     justify-content: center;
     display: flex;

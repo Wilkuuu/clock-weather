@@ -2,6 +2,7 @@ body {
     max-height: 600px;
     background: black;
     font-family: 'Manrope';
+    overflow: hidden;
 
 }
 

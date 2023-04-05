@@ -10,10 +10,10 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/time")
-def get_time():
-    now = [datetime.now().strftime("%H:%M"), datetime.now().weekday(), datetime.now().strftime("%d.%m.%Y")]
-    return now
+# @app.route("/time")
+# def get_time():
+#     now = datetime.now().strftime("%H:%M")
+#     return now
 
 
 @app.route("/weather")

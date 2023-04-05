@@ -1,8 +1,16 @@
 function updateTime() {
-    $.get("/time", function (data) {
-        $("#time").text(data[0]);
-        $("#day").text(`${setDay(data[1])} ${data[2]}`);
-    });
+    // $.get("/time", function (data) {
+    //     $("#time").text(data[0]);
+    //     $("#day").text(`${setDay(data[1])} ${data[2]}`);
+    // });
+    let objectDate = new Date();
+    let day = objectDate.getDate();
+    let month = objectDate.getMonth() +1;
+    let year = objectDate.getFullYear();
+    let date = `${day}.${month}.${year}`;
+
+    $("#time").text(`${objectDate.getHours()}:${objectDate.getMinutes()}`);
+    $("#day").text(`${date}`);
 }
 
 setInterval(updateTime, 1000);

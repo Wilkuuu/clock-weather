@@ -5,12 +5,12 @@ function updateTime() {
     // });
     let objectDate = new Date();
     let day = objectDate.getDate();
-    let dayNumber = objectDate.getDay();
-    let month = objectDate.getMonth() +1;
+    let dayNumber = objectDate.getDay()  ;
+    let month = (objectDate.getMonth() +1) < 10 ? `0${objectDate.getMonth() +1}` : objectDate.getMonth() +1 ;
     let year = objectDate.getFullYear();
     let date = `${day}.${month}.${year}`;
 
-    $("#time").text(`${objectDate.getHours()}:${objectDate.getMinutes()}`);
+    $("#time").text(`${objectDate.getHours()}:${objectDate.getMinutes() < 10 ? '0' + objectDate.getMinutes() : objectDate.getMinutes()}`);
     $("#day").text(`${setDay(dayNumber)} ${date}`);
 }
 

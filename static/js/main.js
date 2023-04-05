@@ -1,8 +1,5 @@
 function updateTime() {
-    // $.get("/time", function (data) {
-    //     $("#time").text(data[0]);
-    //     $("#day").text(`${setDay(data[1])} ${data[2]}`);
-    // });
+
     let objectDate = new Date();
     let day = objectDate.getDate();
     let dayNumber = objectDate.getDay()  ;

@@ -1,29 +1,72 @@
-body{
+body {
     max-height: 600px;
     background: black;
     font-family: 'Manrope';
 
 }
-#time{
- color: white;
-    font-size: 100px;
+
+#time {
+    color: white;
+    font-size: 130px;
+    font-weight: bold;
     align-content: center;
     justify-content: center;
     display: flex;
     max-height: 30px;
 }
-#day{
- color: white;
+
+#day {
+    color: white;
+    font-size: 70px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+}
+
+#weather {
+    color: white;
     font-size: 100px;
     align-content: center;
     justify-content: center;
     display: flex;
 }
 
-#weather{
- color: white;
-    font-size: 100px;
-    align-content: center;
-    justify-content: center;
+.grid-container {
+}
+
+.top {
     display: flex;
+}
+
+.bottom {
+
+}
+
+.bottom-right {
+    width: 50%;
+}
+
+.bottom-left {
+    width: 50%;
+}
+
+.top-left {
+    width: 50%;
+    background-repeat: no-repeat;
+}
+
+.top-right {
+    width: 50%;
+}
+
+#weatherIcon {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.sunny {
+    background-image: url("icons/Sunny.png");
+
 }

@@ -10,6 +10,7 @@ body{
     align-content: center;
     justify-content: center;
     display: flex;
+    max-height: 30px;
 }
 #day{
  color: white;

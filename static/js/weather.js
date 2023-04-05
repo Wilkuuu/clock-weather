@@ -37,7 +37,7 @@ function getWeather() {
     });
 }
 
-setInterval(getWeather, 3000);
+setInterval(getWeather, 30000);
 
 function getIconSrc(data) {
 

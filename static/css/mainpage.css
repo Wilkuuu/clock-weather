@@ -72,7 +72,95 @@ body {
     height: 100%;
 }
 
-.sunny {
-    background-image: url("icons/Sunny.png");
 
+.sunny {
+    background-image: url("clear-day.png");
+}
+
+.partly-cloudy-day {
+    background-image: url("icons/partly-cloudy-day.png");
+}
+
+.partly-cloudy-night {
+    background-image: url("icons/partly-cloudy-night.png");
+}
+
+.clear-day {
+    background-image: url("icons/clear-day.png");
+}
+
+.clear-night {
+    background-image: url("icons/clear-night.png");
+}
+
+.cloudy {
+    background-image: url("icons/cloudy.png");
+}
+
+.fog {
+    background-image: url("icons/fog.png");
+}
+
+.hail {
+    background-image: url("icons/hail.png");
+}
+
+.rain-snow-showers-day {
+    background-image: url("icons/rain-snow-showers-day.png");
+}
+
+.rain-snow-showers-night {
+    background-image: url("icons/rain-snow-showers-night.png");
+}
+
+.rain-snow {
+    background-image: url("icons/rain-snow.png");
+}
+
+.rain {
+    background-image: url("icons/rain.png");
+}
+
+.showers-day {
+    background-image: url("icons/showers-day.png");
+}
+
+.showers-night {
+    background-image: url("icons/showers-night.png");
+}
+
+.sleet {
+    background-image: url("icons/sleet.png");
+}
+
+.snow-showers-day {
+    background-image: url("icons/snow-showers-day.png");
+}
+
+.snow-showers-night {
+    background-image: url("icons/snow-showers-night.png");
+}
+
+.snow {
+    background-image: url("icons/snow.png");
+}
+
+.thunder-rain {
+    background-image: url("icons/thunder-rain.png");
+}
+
+.thunder-showers-day {
+    background-image: url("icons/thunder-showers-day.png");
+}
+
+.thunder-showers-night {
+    background-image: url("icons/thunder-showers-night.png");
+}
+
+.thunder {
+    background-image: url("icons/thunder.png");
+}
+
+.wind {
+    background-image: url("icons/wind.png");
 }

@@ -1,7 +1,7 @@
 let counter = 0
 
 function getWeather() {
-    $.get("/weather", function(data) {
+    $.get("/weather", function (data) {
         console.warn(data)
         // $("#weather").text(`${data.current_weather.temperature}${data.hourly_units.temperature_2m}`);
         // document.getElementById('weatherIcon').classList.add(addClass(data))
@@ -10,13 +10,27 @@ function getWeather() {
         $("#humidity").text(`${data.currentConditions.humidity}%`);
         $("#wind").text(`${data.currentConditions.windspeed}km/h`);
         $("#pressure").text(`${data.currentConditions.pressure}hPa`);
+        // $("#night").text(`${data.currentConditions.pressure}hPa`);
         document.getElementById('weatherIcon').classList.value = '';
         document.getElementById('weatherIcon').classList.add(addClass(data))
+        document.getElementById('day1').innerHTML = `<div>
+            <div class="row">${data.days[0].feelslike}</div>
+            <div class="row">
+                <p class="dailyIcon ${data.days[0].icon}"></p>
+            </div>
+            </div>`
+        document.getElementById('day2').innerHTML = `<div>
+            <div class="row">${data.days[1].feelslike}</div>
+            <div class="row">
+                <p class="dailyIcon ${data.days[1].icon}"></p>
+            </div>
+            </div>`
     });
 }
+
 setInterval(getWeather, 30000);
 
-function addClass(data){
+function addClass(data) {
     return data.currentConditions.icon
 }
 

@@ -111,6 +111,9 @@ body {
     background-size: auto;
 
 }
+.weatherIcon{
+    width: 75%;
+}
 .dailyIcon{
     width: 100%;
 }

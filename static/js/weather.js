@@ -11,12 +11,14 @@ function getWeather() {
         $("#wind").text(`${data.currentConditions.windspeed}km/h`);
         $("#pressure").text(`${data.currentConditions.pressure}hPa`);
         document.getElementById('weatherIcon').classList.value = '';
-        document.getElementById('weatherIcon').classList.add(addClass(data))
+        // document.getElementById('weatherIcon').classList.add(addClass(data))
+        document.getElementById('weatherIcon').innerHTML = ` <div class="row">
+              <img class="weatherIcon" src="static/css/icons/${data.currentConditions.icon}.png"/>
+            </div>`
         document.getElementById('day1').innerHTML = `<div>
             <div class="row">${data.days[0].feelslike}°C</div>
             <div class="row">
-                            <img class="dailyIcon" src="static/css/icons/${data.days[0].icon}.png"/>
-
+              <img class="dailyIcon" src="static/css/icons/${data.days[0].icon}.png"/>
             </div>
             </div>`
         document.getElementById('day2').innerHTML = `<div>
@@ -37,7 +39,7 @@ function getWeather() {
 
 setInterval(getWeather, 3000);
 
-function getIconSrc(data){
+function getIconSrc(data) {
 
 }
 
@@ -45,29 +47,29 @@ function addClass(data) {
     return data.currentConditions.icon
 }
 
-function getMoonPhase(phase){
-    if(phase === 0){
+function getMoonPhase(phase) {
+    if (phase === 0) {
         return 'newMoon'
     }
-    if(0 < phase < 0.25){
+    if (0 < phase < 0.25) {
 
     }
-    if(0.25 === phase){
+    if (0.25 === phase) {
 
     }
-    if(0.25 < phase < 0.5){
+    if (0.25 < phase < 0.5) {
 
     }
-    if(phase === 0.5){
+    if (phase === 0.5) {
 
     }
-    if(0.5 < phase < 0.75){
+    if (0.5 < phase < 0.75) {
 
     }
-    if(phase === 0.75){
+    if (phase === 0.75) {
 
     }
-    if(0.75 < phase < 1){
+    if (0.75 < phase < 1) {
 
     }
 }

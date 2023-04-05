@@ -7,7 +7,7 @@ function updateTime() {
     let year = objectDate.getFullYear();
     let date = `${day}.${month}.${year}`;
     document.getElementById('time').innerHTML = `<p>${objectDate.getHours()}:${objectDate.getMinutes() < 10 ? '0' + objectDate.getMinutes() : objectDate.getMinutes()}</p>`
-    $("#day").text(`${setDay(dayNumber)} ${date}`);
+    $("#day").text(`${setDay(dayNumber)[0]} ${date}`);
 }
 
 setInterval(updateTime, 1000);
@@ -15,19 +15,19 @@ setInterval(updateTime, 1000);
 function setDay(day) {
     switch (Number(day)) {
         case 1:
-            return 'Poniedziałek'
+            return ['Poniedziałek', 'PN']
         case 2:
-            return 'Wtorek'
+            return ['Wtorek', 'WT']
         case 3:
-            return 'Środa'
+            return ['Środa', 'ŚR']
         case 4:
-            return 'Czwartek'
+            return ['Czwartek', 'CZW']
         case 5:
-            return 'Piątek'
+            return ['Piątek', 'PT']
         case 6:
-            return 'Sobota'
+            return ['Sobota', 'SOB']
         case 0:
-            return 'Niedziela'
+            return ['Niedziela', 'ND']
 
     }
 }

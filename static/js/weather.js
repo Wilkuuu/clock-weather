@@ -8,68 +8,139 @@ function getWeather() {
 
         $("#weather").text(`${data.currentConditions.temp}°C`);
         $("#humidity").text(`${data.currentConditions.humidity}%`);
-        $("#wind").text(`${data.currentConditions.windspeed}km/h`);
+        $("#wind").text(`${data.currentConditions.windspeed}km/h ${degToCompass(data.currentConditions.winddir)}`);
         $("#pressure").text(`${data.currentConditions.pressure}hPa`);
         document.getElementById('weatherIcon').classList.value = '';
-        // document.getElementById('weatherIcon').classList.add(addClass(data))
-        document.getElementById('weatherIcon').innerHTML = ` <div class="row">
-              <img class="weatherIcon" src="static/css/icons/${data.currentConditions.icon}.png"/>
-            </div>`
-        document.getElementById('day1').innerHTML = `<div>
-            <div class="row">${data.days[0].feelslike}°C</div>
-            <div class="row">
-              <img class="dailyIcon" src="static/css/icons/${data.days[0].icon}.png"/>
-            </div>
-            </div>`
-        document.getElementById('day2').innerHTML = `<div>
-            <div class="row">${data.days[1].feelslike}°C</div>
-            <div class="row">
-                <img class="dailyIcon" src="static/css/icons/${data.days[1].icon}.png" />
-            </div>
-            </div>`
-        document.getElementById('night').innerHTML = `
-<div class="row"></div>
-<div class="row">
-    
-</div>
-<div class="row"></div>
-`
+        document.getElementById('weatherIcon').innerHTML = getCurrentWeather(data)
+        document.getElementById('day1').innerHTML = getDayWeather(data, 1)
+        document.getElementById('day2').innerHTML = getDayWeather(data, 2)
+        document.getElementById('night').innerHTML = getNight(data)
     });
 }
 
-setInterval(getWeather, 30000);
+setInterval(getWeather, 10000);
 
-function getIconSrc(data) {
-
+function getDayWeather(data, index) {
+    let day = new Date(new Date().setDate(new Date().getDate() + index)).getDate()
+    let month = new Date(new Date().setDate(new Date().getDate() + index)).getMonth()
+    month = month< 10 ? `0${month}`: month
+    return `<div>
+<div class="row">${setDay(new Date(new Date().setDate(new Date().getDate() + index)).getDay())[1]} ${day}.${month}</div>
+<div class="row">
+<div class="col">
+   <div class="row">${data.days[index].feelslike}°C</div>
+            <div class="row">
+              <img class="dailyIcon" src="static/css/icons/${data.days[index].icon}.png"/>
+            </div>
+            </div>
+</div>
+<div class="col"></div>
+</div> `
 }
 
-function addClass(data) {
-    return data.currentConditions.icon
+function isDay(data) {
+    const current = new Date().getTime() / 1000
+    if (current < data.currentConditions.sunriseEpoch) {
+        return 0 //morning night
+    }
+    if (data.currentConditions.sunriseEpoch < current < data.currentConditions.sunsetEpoch) {
+        return 1 //day
+    }
+    if (current > data.currentConditions.sunsetEpoch) {
+        return 2 //evening night
+    }
 }
+
+function getNight(data) {
+    if (isDay(data) === 1) {
+        const objectDate = new Date()
+        let day = objectDate.getDate();
+        let month = (objectDate.getMonth() + 1) < 10 ? `0${objectDate.getMonth() + 1}` : objectDate.getMonth() + 1;
+        return `<div class="row">${setDay(new Date().getDay())[1]} ${day}.${month}</div>
+            <div class="row">
+                <img src="static/css/icons/moon${getMoonPhase(data.currentConditions.moonphase)}.png"/>
+            </div>
+            <div class="row">${Math.max(...data.days[0].hours.map(e => e.temp))}°C</div>`
+    } else if (isDay(data) === 0) {
+        `<div class="row">${setDay(new Date().getDay())[1]}</div>
+        <div class="row">    
+        </div>
+<div class="row"></div>`
+    } else return ''
+}
+
+function getCurrentWeather(data) {
+    let dayTime = isDay(data)
+    let value = ''
+    if (dayTime === 1) {
+        value = ` <div class="row">
+              <img class="weatherIcon" src="static/css/icons/${data.currentConditions.icon}.png"/>
+            </div>`
+    } else {
+        value = ` <div class="row">
+              <img class="weatherIcon" src="static/css/icons/${data.currentConditions.icon}${getMoonPhase(Number(data.currentConditions.moonphase))}.png"/>
+            </div>`
+    }
+    return value
+}
+
+function degToCompass(num) {
+    var val = Math.floor((num / 22.5) + 0.5);
+    var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+    return arr[(val % 16)];
+}
+
 
 function getMoonPhase(phase) {
+    phase = Number(phase)
     if (phase === 0) {
-        return 'newMoon'
+        return 0
     }
-    if (0 < phase < 0.25) {
-
+    if (phase < 0.25) {
+        return 1
     }
     if (0.25 === phase) {
+        return 2
 
     }
-    if (0.25 < phase < 0.5) {
+    if (phase < 0.5) {
+        return 3
 
     }
     if (phase === 0.5) {
+        return 4
 
     }
-    if (0.5 < phase < 0.75) {
+    if (phase < 0.75) {
+        return 5
 
     }
     if (phase === 0.75) {
+        return 6
 
     }
-    if (0.75 < phase < 1) {
+    if (0.75 < phase) {
+        return 7
+
+    }
+}
+
+function setDay(day) {
+    switch (Number(day)) {
+        case 1:
+            return ['Poniedziałek', 'PN']
+        case 2:
+            return ['Wtorek', 'WT']
+        case 3:
+            return ['Środa', 'ŚR']
+        case 4:
+            return ['Czwartek', 'CZW']
+        case 5:
+            return ['Piątek', 'PT']
+        case 6:
+            return ['Sobota', 'SOB']
+        case 0:
+            return ['Niedziela', 'ND']
 
     }
 }

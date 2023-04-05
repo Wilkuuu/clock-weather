@@ -113,6 +113,7 @@ body {
 }
 .weatherIcon{
     width: 75%;
+    position: absolute;
 }
 .dailyIcon{
     width: 100%;

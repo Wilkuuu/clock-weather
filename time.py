@@ -10,12 +10,6 @@ def index():
     return render_template("index.html")
 
 
-# @app.route("/time")
-# def get_time():
-#     now = datetime.now().strftime("%H:%M")
-#     return now
-
-
 @app.route("/weather")
 def get_weather():
     response = requests.get(

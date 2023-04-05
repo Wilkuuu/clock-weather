@@ -2,7 +2,7 @@ let counter = 0
 
 function getWeather() {
     $.get("/weather", function(data) {
-        // console.warn(data)
+        console.warn(data)
         $("#weather").text(`${data.current_weather.temperature}${data.hourly_units.temperature_2m}`);
         document.getElementById('weatherIcon').classList.add(addClass(data))
     });

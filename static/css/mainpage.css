@@ -37,10 +37,13 @@ body {
 .top {
     display: flex;
     max-height: 300px;
+    height: 300px;
+
 }
 
 .bottom {
     max-height: 300px;
+    height: 300px;
     display: flex;
 
 }

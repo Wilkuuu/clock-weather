@@ -8,6 +8,8 @@ function getWeather() {
 
         $("#weather").text(`${data.currentConditions.temp}°C`);
         $("#humidity").text(`${data.currentConditions.humidity}%`);
+        $("#wind").text(`${data.currentConditions.windspeed}km/h`);
+        $("#pressure").text(`${data.currentConditions.pressure}hPa`);
         document.getElementById('weatherIcon').classList.value = '';
         document.getElementById('weatherIcon').classList.add(addClass(data))
     });

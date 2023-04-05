@@ -37,6 +37,9 @@ body {
     justify-content: center;
     display: flex;
     font-weight: bold;
+    position: relative;
+    left: 0px;
+    top: -87px;
 
 }
 
@@ -46,6 +49,29 @@ body {
     align-content: center;
     justify-content: center;
     display: flex;
+    position: relative;
+    left: -40px;
+    top: -87px;
+}
+#wind {
+    color: white;
+    font-size: 50px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    left: -19px;
+    top: -87px;
+}
+#pressure {
+    color: white;
+    font-size: 50px;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    left: -19px;
+    top: -87px;
 }
 
 .grid-container {

@@ -6,8 +6,7 @@ function updateTime() {
     let month = (objectDate.getMonth() +1) < 10 ? `0${objectDate.getMonth() +1}` : objectDate.getMonth() +1 ;
     let year = objectDate.getFullYear();
     let date = `${day}.${month}.${year}`;
-
-    $("#time").text(`${objectDate.getHours()}:${objectDate.getMinutes() < 10 ? '0' + objectDate.getMinutes() : objectDate.getMinutes()}`);
+    document.getElementById('time').innerHTML = `<p>${objectDate.getHours()}:${objectDate.getMinutes() < 10 ? '0' + objectDate.getMinutes() : objectDate.getMinutes()}</p>`
     $("#day").text(`${setDay(dayNumber)} ${date}`);
 }
 

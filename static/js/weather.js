@@ -10,28 +10,66 @@ function getWeather() {
         $("#humidity").text(`${data.currentConditions.humidity}%`);
         $("#wind").text(`${data.currentConditions.windspeed}km/h`);
         $("#pressure").text(`${data.currentConditions.pressure}hPa`);
-        // $("#night").text(`${data.currentConditions.pressure}hPa`);
         document.getElementById('weatherIcon').classList.value = '';
         document.getElementById('weatherIcon').classList.add(addClass(data))
         document.getElementById('day1').innerHTML = `<div>
-            <div class="row">${data.days[0].feelslike}</div>
+            <div class="row">${data.days[0].feelslike}°C</div>
             <div class="row">
-                <p class="dailyIcon ${data.days[0].icon}"></p>
+                            <img class="dailyIcon" src="static/css/icons/${data.days[0].icon}.png"/>
+
             </div>
             </div>`
         document.getElementById('day2').innerHTML = `<div>
-            <div class="row">${data.days[1].feelslike}</div>
+            <div class="row">${data.days[1].feelslike}°C</div>
             <div class="row">
-                <p class="dailyIcon ${data.days[1].icon}"></p>
+                <img class="dailyIcon" src="static/css/icons/${data.days[1].icon}.png" />
             </div>
             </div>`
+        document.getElementById('night').innerHTML = `
+<div class="row"></div>
+<div class="row">
+    
+</div>
+<div class="row"></div>
+`
     });
 }
 
-setInterval(getWeather, 30000);
+setInterval(getWeather, 3000);
+
+function getIconSrc(data){
+
+}
 
 function addClass(data) {
     return data.currentConditions.icon
+}
+
+function getMoonPhase(phase){
+    if(phase === 0){
+        return 'newMoon'
+    }
+    if(0 < phase < 0.25){
+
+    }
+    if(0.25 === phase){
+
+    }
+    if(0.25 < phase < 0.5){
+
+    }
+    if(phase === 0.5){
+
+    }
+    if(0.5 < phase < 0.75){
+
+    }
+    if(phase === 0.75){
+
+    }
+    if(0.75 < phase < 1){
+
+    }
 }
 
 
@@ -48,3 +86,12 @@ function addClass(data) {
     "relativehumidity_2m": [82,83,86,85,88,88,84,76, ...],
   }
   */
+//
+// 0 – new moon
+// 0-0.25 – waxing crescent
+// 0.25 – first quarter
+// 0.25-0.5 – waxing gibbous
+// 0.5 – full moon
+// 0.5-0.75 – waning gibbous
+// 0.75 – last quarter
+// 0.75 -1 – waning crescent

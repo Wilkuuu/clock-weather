@@ -247,3 +247,6 @@ body {
     height: 216px;
     margin-top: 100px;
 }
+.weatherIconRow{
+    height: 115px;
+}

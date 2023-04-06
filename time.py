@@ -15,7 +15,7 @@ def get_weather():
 #     response = requests.get(
 #         "https://api.open-meteo.com/v1/forecast?latitude=53.22&longitude=18.14&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m")
     response = requests.get(
-        "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/aleksandrowo%2Cdobrcz?unitGroup=metric&key=CA9MXP5FRAKJLRMPQ8L6G8T2B&contentType=json")
+        "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/aleksandrowo%2Cdobrcz?unitGroup=metric&key=L47MMDSK79SLHF4F38VSZN2G7&contentType=json")
     return response.json()
 # CA9MXP5FRAKJLRMPQ8L6G8T2B
 # L47MMDSK79SLHF4F38VSZN2G7

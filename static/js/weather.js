@@ -27,22 +27,28 @@ function getDayWeather(data, index) {
     return `<div class="nextDayBorder">
                 <div class="col">
                      <div class="row"><p class=" nextDayHeader text-center">${setDay(new Date(new Date().setDate(new Date().getDate() + index)).getDay())[1]}. ${day}.${month}</p></div>
-                     <div class="row">
+                     <div class="row weatherIconRow">
                          <div class="col">
                                <div class="row">
                                  <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[8].icon}.png"/>
                                </div>
-                               <div className="row"><p className="dailyTemperature text-center">${Math.round(data.days[index].hours[8].feelslike)}°C</p></div>
                                
                          </div> 
                           <div class="col">
                                <div class="row">
                                  <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[14].icon}.png"/>
                                </div>
-                               <div className="row"><p className="dailyTemperature text-center">${Math.round(data.days[index].hours[14].feelslike)}°C</p></div>
                                
                          </div>
                      </div>
+                     <div class="row">
+                     <div class="col">
+                          <div class="row"><p class="dailyTemperature text-center">${Math.round(data.days[index].hours[8].feelslike)}°C</p></div>
+                    </div>
+                     <div class="col">
+                             <div class="row"><p class="dailyTemperature text-center">${Math.round(data.days[index].hours[14].feelslike)}°C</p></div>
+                      </div>
+                    </div>
                 </div>
     </div> `
 }
@@ -68,10 +74,10 @@ function getNight(data) {
         return `<div class="row nextWeatherData">
                     <div class="col">
                         <p class="nextDayHeader text-center">${setDay(new Date().getDay())[1]} ${day}.${month}</p>
-                        <div class="row">
+                        <div class="row weatherIconRow">
                             <img src="static/css/icons/moon${getMoonPhase(data.currentConditions.moonphase)}.png"/>
                         </div>
-                        <div class="row">${Math.round(Math.max(...data.days[0].hours.map(e => e.temp)))}°C</div>
+                        <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.max(...data.days[0].hours.map(e => e.temp)))}°C</p></div>
                     </div>
                 </div>`
     } else if (isDay(data) === 0) {

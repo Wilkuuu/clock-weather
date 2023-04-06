@@ -65,11 +65,15 @@ function getNight(data) {
         const objectDate = new Date()
         let day = objectDate.getDate();
         let month = (objectDate.getMonth() + 1) < 10 ? `0${objectDate.getMonth() + 1}` : objectDate.getMonth() + 1;
-        return `<div class="row">${setDay(new Date().getDay())[1]} ${day}.${month}</div>
-            <div class="row">
-                <img src="static/css/icons/moon${getMoonPhase(data.currentConditions.moonphase)}.png"/>
-            </div>
-            <div class="row">${Math.round(Math.max(...data.days[0].hours.map(e => e.temp)))}°C</div>`
+        return `<div class="row nextWeatherData">
+                    <div class="col">
+                        <div class="row">${setDay(new Date().getDay())[1]} ${day}.${month}</div>
+                        <div class="row">
+                            <img src="static/css/icons/moon${getMoonPhase(data.currentConditions.moonphase)}.png"/>
+                        </div>
+                        <div class="row">${Math.round(Math.max(...data.days[0].hours.map(e => e.temp)))}°C</div>
+                    </div>
+                </div>`
     } else if (isDay(data) === 0) {
         `<div class="row">${setDay(new Date().getDay())[1]}</div>
         <div class="row">    

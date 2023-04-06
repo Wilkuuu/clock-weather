@@ -69,7 +69,7 @@ function getNight(data) {
             <div class="row">
                 <img src="static/css/icons/moon${getMoonPhase(data.currentConditions.moonphase)}.png"/>
             </div>
-            <div class="row">${Mart.round(Math.max(...data.days[0].hours.map(e => e.temp)))}°C</div>`
+            <div class="row">${Math.round(Math.max(...data.days[0].hours.map(e => e.temp)))}°C</div>`
     } else if (isDay(data) === 0) {
         `<div class="row">${setDay(new Date().getDay())[1]}</div>
         <div class="row">    

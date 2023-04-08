@@ -37,10 +37,10 @@ function getDayWeather(data, index) {
                      </div>
                      <div class="row">
                      <div class="col">
-                             <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.min(...data.days[index].hours.map(e => e.feelslike)))}°C</p></div>
+                             <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.max(...data.days[index].hours.map(e => e.feelslike)))}°C</p></div>
                     </div>
                      <div class="col">
-                             <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.max(...data.days[index].hours.map(e => e.feelslike)))}°C</p></div>
+                             <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.min(...data.days[index].hours.map(e => e.feelslike)))}°C</p></div>
                       </div>
                     </div>
                 </div>

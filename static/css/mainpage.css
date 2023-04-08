@@ -250,3 +250,6 @@ body {
 .weatherIconRow{
     height: 115px;
 }
+.col-day1{
+    padding-left: 40px;
+}

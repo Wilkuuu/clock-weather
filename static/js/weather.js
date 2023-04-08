@@ -29,24 +29,18 @@ function getDayWeather(data, index) {
                      <div class="row"><p class=" nextDayHeader text-center">${setDay(new Date(new Date().setDate(new Date().getDate() + index)).getDay())[1]}. ${day}.${month}</p></div>
                      <div class="row weatherIconRow">
                          <div class="col">
-                               <div class="row">
-                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[8].icon}.png"/>
-                               </div>
-                               
+                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[10].icon}.png"/>                             
                          </div> 
                           <div class="col">
-                               <div class="row">
-                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[14].icon}.png"/>
-                               </div>
-                               
+                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[22].icon}.png"/>                               
                          </div>
                      </div>
                      <div class="row">
                      <div class="col">
-                          <div class="row"><p class="dailyTemperature text-center">${Math.round(data.days[index].hours[8].feelslike)}°C</p></div>
+                             <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.min(...data.days[index].hours.map(e => e.feelslike)))}°C</p></div>
                     </div>
                      <div class="col">
-                             <div class="row"><p class="dailyTemperature text-center">${Math.round(data.days[index].hours[14].feelslike)}°C</p></div>
+                             <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.max(...data.days[index].hours.map(e => e.feelslike)))}°C</p></div>
                       </div>
                     </div>
                 </div>

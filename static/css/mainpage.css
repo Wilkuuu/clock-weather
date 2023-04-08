@@ -12,11 +12,13 @@ body {
 
 #time {
     color: white;
-    font-size: 130px;
-    font-weight: bold;
     align-content: center;
     justify-content: center;
     max-height: 185px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 145px;
+    line-height: 199px;
 }
 
 #day {
@@ -32,24 +34,26 @@ body {
     align-content: center;
     justify-content: center;
     font-weight: bold;
+    margin-top:25px;
 
 }
 
 #humidity {
     color: white;
-    font-size: 40px;
+    font-size: 25px;
     align-content: center;
     justify-content: center;
 }
 #wind {
     color: white;
-    font-size: 40px;
+    font-size: 25px;
     align-content: center;
     justify-content: center;
+    white-space: pre;
 }
 #pressure {
     color: white;
-    font-size: 40px;
+    font-size: 25px;
     align-content: center;
     justify-content: center;
 }
@@ -58,6 +62,7 @@ body {
     font-size: 40px;
     align-content: center;
     justify-content: center;
+    right: 68px;
 }
 #day1 {
     color: white;
@@ -112,11 +117,11 @@ body {
 
 }
 .weatherIcon{
-    width: 75%;
+    width: 640px;
     position: absolute;
 }
 .dailyIcon{
-    width: 100%;
+    width: 90px;
 }
 
 .partly-cloudy-day {
@@ -205,4 +210,43 @@ body {
 
 .wind {
     background-image: url("icons/wind.png");
+}
+
+.nextDayBorder {
+    margin-top: 100px;
+    width: 276px;
+    height: 217px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+}
+
+.nextDayHeader{
+    width:100%;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 32px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.dailyTemperature{
+    width: 100%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 32px;
+}
+.detailIcon{
+    width:20px
+}
+
+.nextWeatherData {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 26px;
+    width: 157px;
+    height: 216px;
+    margin-top: 100px;
+}
+.weatherIconRow{
+    height: 115px;
 }

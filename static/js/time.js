@@ -7,7 +7,7 @@ function updateTime() {
     let year = objectDate.getFullYear();
     let date = `${day}.${month}.${year}`;
     document.getElementById('time').innerHTML = `<p>${objectDate.getHours()}:${objectDate.getMinutes() < 10 ? '0' + objectDate.getMinutes() : objectDate.getMinutes()}</p>`
-    $("#day").text(`${setDay(dayNumber)[0]} ${date}`);
+    document.getElementById('day').innerHTML = `<p>${setDay(dayNumber)[0]} ${date}</p>`
 }
 
 setInterval(updateTime, 1000);

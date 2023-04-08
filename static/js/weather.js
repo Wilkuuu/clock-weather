@@ -6,11 +6,11 @@ function getWeather() {
         // $("#weather").text(`${data.current_weather.temperature}${data.hourly_units.temperature_2m}`);
         // document.getElementById('weatherIcon').classList.add(addClass(data))
 
-        $("#weather").text(`${data.currentConditions.temp}°C`);
-        $("#humidity").text(`${data.currentConditions.humidity}%`);
-        $("#wind").text(`${data.currentConditions.windspeed}km/h ${degToCompass(data.currentConditions.winddir)}`);
-        $("#pressure").text(`${data.currentConditions.pressure}hPa`);
-        document.getElementById('weatherIcon').classList.value = '';
+
+        document.getElementById('weather').innerHTML = `<p>${Math.round(data.currentConditions.temp)}°C</p>`;
+        document.getElementById('humidity').innerHTML = `<div class="col-1"><img class="detailIcon" src="static/css/icons/humi-icon.png" /></div><div class="col"><p>${data.currentConditions.humidity}%</p></div>`;
+        document.getElementById('wind').innerHTML = `<div class="col-1"><img class="detailIcon" src="static/css/icons/wind-icon.png" /></div><div class="col"><p>${data.currentConditions.windspeed}km/h ${degToCompass(data.currentConditions.winddir)}</p></div>`;
+        document.getElementById('pressure').innerHTML = `<div class="col-1"><img class="detailIcon" src="static/css/icons/dir-icon.png" /></div><div class="col"><p>${data.currentConditions.pressure}hPa</p></div>`;
         document.getElementById('weatherIcon').innerHTML = getCurrentWeather(data)
         document.getElementById('day1').innerHTML = getDayWeather(data, 1)
         document.getElementById('day2').innerHTML = getDayWeather(data, 2)
@@ -23,19 +23,34 @@ setInterval(getWeather, 100000);
 function getDayWeather(data, index) {
     let day = new Date(new Date().setDate(new Date().getDate() + index)).getDate()
     let month = new Date(new Date().setDate(new Date().getDate() + index)).getMonth()
-    month = month< 10 ? `0${month}`: month
-    return `<div>
-<div class="row">${setDay(new Date(new Date().setDate(new Date().getDate() + index)).getDay())[1]} ${day}.${month}</div>
-<div class="row">
-<div class="col">
-   <div class="row">${data.days[index].feelslike}°C</div>
-            <div class="row">
-              <img class="dailyIcon" src="static/css/icons/${data.days[index].icon}.png"/>
-            </div>
-            </div>
-</div>
-<div class="col"></div>
-</div> `
+    month = month < 10 ? `0${month}` : month
+    return `<div class="nextDayBorder">
+                <div class="col">
+                     <div class="row"><p class=" nextDayHeader text-center">${setDay(new Date(new Date().setDate(new Date().getDate() + index)).getDay())[1]}. ${day}.${month}</p></div>
+                     <div class="row weatherIconRow">
+                         <div class="col">
+                               <div class="row">
+                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[8].icon}.png"/>
+                               </div>
+                               
+                         </div> 
+                          <div class="col">
+                               <div class="row">
+                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[14].icon}.png"/>
+                               </div>
+                               
+                         </div>
+                     </div>
+                     <div class="row">
+                     <div class="col">
+                          <div class="row"><p class="dailyTemperature text-center">${Math.round(data.days[index].hours[8].feelslike)}°C</p></div>
+                    </div>
+                     <div class="col">
+                             <div class="row"><p class="dailyTemperature text-center">${Math.round(data.days[index].hours[14].feelslike)}°C</p></div>
+                      </div>
+                    </div>
+                </div>
+    </div> `
 }
 
 function isDay(data) {
@@ -56,11 +71,15 @@ function getNight(data) {
         const objectDate = new Date()
         let day = objectDate.getDate();
         let month = (objectDate.getMonth() + 1) < 10 ? `0${objectDate.getMonth() + 1}` : objectDate.getMonth() + 1;
-        return `<div class="row">${setDay(new Date().getDay())[1]} ${day}.${month}</div>
-            <div class="row">
-                <img src="static/css/icons/moon${getMoonPhase(data.currentConditions.moonphase)}.png"/>
-            </div>
-            <div class="row">${Math.max(...data.days[0].hours.map(e => e.temp))}°C</div>`
+        return `<div class="row nextWeatherData">
+                    <div class="col">
+                        <p class="nextDayHeader text-center">${setDay(new Date().getDay())[1]} ${day}.${month}</p>
+                        <div class="row weatherIconRow">
+                            <img src="static/css/icons/moon${getMoonPhase(data.currentConditions.moonphase)}.png"/>
+                        </div>
+                        <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.max(...data.days[0].hours.map(e => e.temp)))}°C</p></div>
+                    </div>
+                </div>`
     } else if (isDay(data) === 0) {
         `<div class="row">${setDay(new Date().getDay())[1]}</div>
         <div class="row">    

@@ -1,7 +1,8 @@
-let counter = 0
+let dailyData = null
 
 function getWeather() {
     $.get("/weather", function (data) {
+        dailyData = data
         console.warn(data)
         // $("#weather").text(`${data.current_weather.temperature}${data.hourly_units.temperature_2m}`);
         // document.getElementById('weatherIcon').classList.add(addClass(data))
@@ -86,7 +87,7 @@ function getCurrentWeather(data) {
     let dayTime = isDay(data)
     let value = ''
     if (dayTime === 1) {
-        value = ` <div class="row">
+        value = ` <div class="row" onclick="showDailyPerHours(dailyData)">
               <img class="weatherIcon" src="static/css/icons/${data.currentConditions.icon}.png"/>
             </div>`
     } else {
@@ -95,6 +96,43 @@ function getCurrentWeather(data) {
             </div>`
     }
     return value
+}
+
+function showDailyPerHours(data){
+
+    document.getElementById('weatherIcon').innerHTML = `
+<div class="row">
+ <div class="col">${setDataPerHourAtDay(data.days[0].hours, 8)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[0].hours, 10)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[0].hours, 12)}</div>
+</div>
+
+<div class="row">
+ <div class="col">${setDataPerHourAtDay(data.days[0].hours, 14)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[0].hours, 16)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[0].hours, 18)}</div>
+</div>
+`
+
+    setTimeout(() => {
+        document.getElementById('weatherIcon').innerHTML = getCurrentWeather(data)
+
+    },10000)
+}
+
+function setDataPerHourAtDay(data, hour){
+   return `<div class="row"><div class="col"><p
+        class="text-center">${hour}:00</p></div>
+        </div>
+    <div class="row weatherIconHours">
+        <div class="col text-center">
+            <img class="hoursIcon" src="static/css/icons/${data[hour].icon}.png"/>
+        </div>      
+    </div>
+<div class="row"><div class="col"><p
+        class="text-center">${Math.round(data[hour].feelslike)}°C ${data[hour].windspeed} km/h</p>
+        </div>
+</div>`
 }
 
 function degToCompass(num) {

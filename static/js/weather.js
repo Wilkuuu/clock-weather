@@ -1,5 +1,5 @@
 let dailyData = null
-
+let globalTimeout = null
 function getWeather() {
     $.get("/weather", function (data) {
         dailyData = data
@@ -25,7 +25,7 @@ function getDayWeather(data, index) {
     let day = new Date(new Date().setDate(new Date().getDate() + index)).getDate()
     let month = new Date(new Date().setDate(new Date().getDate() + index)).getMonth()
     month = month < 10 ? `0${month}` : month
-    return `<div class="nextDayBorder">
+    return `<div class="nextDayBorder" onclick="showDailyPerHours(${index})">
                 <div class="col">
                      <div class="row"><p class=" nextDayHeader text-center">${setDay(new Date(new Date().setDate(new Date().getDate() + index)).getDay())[1]}. ${day}.${month}</p></div>
                      <div class="row weatherIconRow">
@@ -87,7 +87,7 @@ function getCurrentWeather(data) {
     let dayTime = isDay(data)
     let value = ''
     if (dayTime === 1) {
-        value = ` <div class="row" onclick="showDailyPerHours(dailyData)">
+        value = ` <div class="row" onclick="showDailyPerHours(0)">
               <img class="weatherIcon" src="static/css/icons/${data.currentConditions.icon}.png"/>
             </div>`
     } else {
@@ -98,23 +98,24 @@ function getCurrentWeather(data) {
     return value
 }
 
-function showDailyPerHours(data){
-
+function showDailyPerHours(day){
+    const data= dailyData
+    clearTimeout(globalTimeout)
     document.getElementById('weatherIcon').innerHTML = `
 <div class="row">
- <div class="col">${setDataPerHourAtDay(data.days[0].hours, 8)}</div>
- <div class="col">${setDataPerHourAtDay(data.days[0].hours, 10)}</div>
- <div class="col">${setDataPerHourAtDay(data.days[0].hours, 12)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 8)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 10)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 12)}</div>
 </div>
 
 <div class="row">
- <div class="col">${setDataPerHourAtDay(data.days[0].hours, 14)}</div>
- <div class="col">${setDataPerHourAtDay(data.days[0].hours, 16)}</div>
- <div class="col">${setDataPerHourAtDay(data.days[0].hours, 18)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 14)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 16)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 18)}</div>
 </div>
 `
 
-    setTimeout(() => {
+    globalTimeout =  setTimeout(() => {
         document.getElementById('weatherIcon').innerHTML = getCurrentWeather(data)
 
     },10000)

@@ -5,7 +5,6 @@ from datetime import datetime
 import os
 import requests
 
-load_dotenv()
 app = Flask(__name__)
 
 
@@ -16,6 +15,7 @@ def index():
 
 
 @app.route("/weather")
+load_dotenv()
 def get_weather():
 #     response = requests.get(
 #         "https://api.open-meteo.com/v1/forecast?latitude=53.22&longitude=18.14&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m")

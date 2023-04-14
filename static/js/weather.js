@@ -1,7 +1,8 @@
-let counter = 0
-
+let dailyData = null
+let globalTimeout = null
 function getWeather() {
     $.get("/weather", function (data) {
+        dailyData = data
         console.warn(data)
         // $("#weather").text(`${data.current_weather.temperature}${data.hourly_units.temperature_2m}`);
         // document.getElementById('weatherIcon').classList.add(addClass(data))
@@ -24,29 +25,23 @@ function getDayWeather(data, index) {
     let day = new Date(new Date().setDate(new Date().getDate() + index)).getDate()
     let month = new Date(new Date().setDate(new Date().getDate() + index)).getMonth()
     month = month < 10 ? `0${month}` : month
-    return `<div class="nextDayBorder">
+    return `<div class="nextDayBorder" onclick="showDailyPerHours(${index})">
                 <div class="col">
                      <div class="row"><p class=" nextDayHeader text-center">${setDay(new Date(new Date().setDate(new Date().getDate() + index)).getDay())[1]}. ${day}.${month}</p></div>
                      <div class="row weatherIconRow">
                          <div class="col">
-                               <div class="row">
-                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[8].icon}.png"/>
-                               </div>
-                               
+                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[10].icon}.png"/>                             
                          </div> 
                           <div class="col">
-                               <div class="row">
-                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[14].icon}.png"/>
-                               </div>
-                               
+                                 <img class="dailyIcon" src="static/css/icons/${data.days[index].hours[22].icon}.png"/>                               
                          </div>
                      </div>
                      <div class="row">
                      <div class="col">
-                          <div class="row"><p class="dailyTemperature text-center">${Math.round(data.days[index].hours[8].feelslike)}°C</p></div>
+                             <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.max(...data.days[index].hours.map(e => e.feelslike)))}°C</p></div>
                     </div>
                      <div class="col">
-                             <div class="row"><p class="dailyTemperature text-center">${Math.round(data.days[index].hours[14].feelslike)}°C</p></div>
+                             <div class="row"><p class="dailyTemperature text-center">${Math.round(Math.min(...data.days[index].hours.map(e => e.feelslike)))}°C</p></div>
                       </div>
                     </div>
                 </div>
@@ -92,7 +87,7 @@ function getCurrentWeather(data) {
     let dayTime = isDay(data)
     let value = ''
     if (dayTime === 1) {
-        value = ` <div class="row">
+        value = ` <div class="row" onclick="showDailyPerHours(0)">
               <img class="weatherIcon" src="static/css/icons/${data.currentConditions.icon}.png"/>
             </div>`
     } else {
@@ -101,6 +96,44 @@ function getCurrentWeather(data) {
             </div>`
     }
     return value
+}
+
+function showDailyPerHours(day){
+    const data= dailyData
+    clearTimeout(globalTimeout)
+    document.getElementById('weatherIcon').innerHTML = `
+<div class="row">
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 8)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 10)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 12)}</div>
+</div>
+
+<div class="row">
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 14)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 16)}</div>
+ <div class="col">${setDataPerHourAtDay(data.days[day].hours, 18)}</div>
+</div>
+`
+
+    globalTimeout =  setTimeout(() => {
+        document.getElementById('weatherIcon').innerHTML = getCurrentWeather(data)
+
+    },10000)
+}
+
+function setDataPerHourAtDay(data, hour){
+   return `<div class="row"><div class="col"><p
+        class="text-center">${hour}:00</p></div>
+        </div>
+    <div class="row weatherIconHours">
+        <div class="col text-center">
+            <img class="hoursIcon" src="static/css/icons/${data[hour].icon}.png"/>
+        </div>      
+    </div>
+<div class="row"><div class="col"><p
+        class="text-center">${Math.round(data[hour].feelslike)}°C ${data[hour].windspeed} km/h</p>
+        </div>
+</div>`
 }
 
 function degToCompass(num) {

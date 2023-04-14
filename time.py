@@ -4,13 +4,16 @@ from dotenv import load_dotenv
 from datetime import datetime
 import os
 import requests
+from pathlib import Path
+dotenv_path = Path('/home/wilk/Desktop/clock-weather/.env')
+load_dotenv(dotenv_path=dotenv_path)
+
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
-    load_dotenv()
     return render_template("index.html")
 
 

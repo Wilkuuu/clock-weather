@@ -19,7 +19,7 @@ function getWeather() {
     });
 }
 
-setInterval(getWeather, 10000);
+setInterval(getWeather, 100000);
 
 function getDayWeather(data, index) {
     let day = new Date(new Date().setDate(new Date().getDate() + index)).getDate()

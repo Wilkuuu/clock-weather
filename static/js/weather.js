@@ -19,7 +19,7 @@ function getWeather() {
     });
 }
 
-setInterval(getWeather, 100000);
+setInterval(getWeather, 10000);
 
 function getDayWeather(data, index) {
     let day = new Date(new Date().setDate(new Date().getDate() + index)).getDate()
@@ -99,6 +99,11 @@ function getCurrentWeather(data) {
 }
 
 function showDailyPerHours(day){
+    $.post("/log",day,function (res) {
+
+    })
+
+
     const data= dailyData
     clearTimeout(globalTimeout)
     document.getElementById('weatherIcon').innerHTML = `
